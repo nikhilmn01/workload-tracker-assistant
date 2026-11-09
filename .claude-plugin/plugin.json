@@ -1,0 +1,10 @@
+{
+  "name": "workload-tracker",
+  "version": "0.1.0",
+  "description": "A calm time assistant: can I take this, what does my week look like, what did that really take. Reads and writes your own schedule in a workload.json, through a bundled MCP server.",
+  "author": {
+    "name": "nikhilmn01"
+  },
+  "repository": "https://github.com/nikhilmn01/workload-tracker-assistant",
+  "license": "PolyForm-Noncommercial-1.0.0"
+}

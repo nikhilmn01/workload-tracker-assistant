@@ -1,0 +1,15 @@
+{
+  "name": "workload-tracker",
+  "description": "The workload-tracker time assistant for Claude Code.",
+  "owner": {
+    "name": "nikhilmn01"
+  },
+  "plugins": [
+    {
+      "name": "workload-tracker",
+      "source": "./",
+      "description": "A calm time assistant over your own schedule: capacity answers, your week, closing work with actuals.",
+      "version": "0.1.0"
+    }
+  ]
+}

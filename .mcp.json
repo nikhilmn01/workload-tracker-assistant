@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "workload-tracker": {
+      "command": "node",
+      "args": ["${CLAUDE_PLUGIN_ROOT}/assistant/server.js"],
+      "env": {
+        "WT_STORAGE": "${WT_STORAGE:-}",
+        "WT_FILE": "${WT_FILE:-}"
+      }
+    }
+  }
+}
