@@ -37654,7 +37654,7 @@ function personalReach(data, todayIso) {
   }
   return out;
 }
-function periodDays(todayIso, scope, settings2, { lifeRows = false } = {}) {
+function periodDays(todayIso, scope, settings2, { lifeRows = false, anchorIso = null } = {}) {
   const shown = (d) => isWorkday(settings2, d) || lifeRows && isPersonalDay(settings2, d);
   const weekOf = (mondayIso) => Array.from({ length: 7 }, (_, i) => addDays(mondayIso, i)).filter(shown);
   const monthOf = (firstIso) => {
@@ -37665,8 +37665,9 @@ function periodDays(todayIso, scope, settings2, { lifeRows = false } = {}) {
     }
     return out;
   };
-  const monday = addDays(todayIso, -(isoWeekday(todayIso) - 1));
-  const { y, m } = parseDay(todayIso);
+  const base = anchorIso ?? todayIso;
+  const monday = addDays(base, -(isoWeekday(base) - 1));
+  const { y, m } = parseDay(base);
   if (scope === "week") return weekOf(monday);
   if (scope === "nextweek") return weekOf(addDays(monday, 7));
   if (scope === "lastweek") return weekOf(addDays(monday, -7));
@@ -37676,9 +37677,10 @@ function periodDays(todayIso, scope, settings2, { lifeRows = false } = {}) {
   }
   return null;
 }
-function statesFor(data, todayIso, scope, { lifeRows = false } = {}) {
-  const period = periodDays(todayIso, scope, data.settings, { lifeRows });
+function statesFor(data, todayIso, scope, { lifeRows = false, anchorIso = null } = {}) {
+  const period = periodDays(todayIso, scope, data.settings, { lifeRows, anchorIso });
   if (period) return period.map((d) => dayState(data, d));
+  if (anchorIso) return [dayState(data, anchorIso)];
   if (lifeRows && isPersonalDay(data.settings, todayIso)) return [dayState(data, todayIso)];
   return horizon(data, todayIso).slice(0, 1);
 }
